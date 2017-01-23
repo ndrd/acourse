@@ -2,9 +2,9 @@
   .ui.segment(v-if='course.options.attend || course.options.assignment')
     .ui.stackable.equal.width.grid
       .column(v-if='course.options.attend')
-        .ui.blue.fluid.button(:class='{disabled: !course.options.attend || course.attended, loading: attending}', @click='attend') Attend
+        .ui.blue.fluid.button(:class='{disabled: !course.options.attend || course.attended, loading: attending}', @click='attend') เช็คชื่อ
       .column(v-if='course.options.assignment')
-        router-link.ui.teal.fluid.button(:to='`/course/${course.id}/assignments`') Assignments
+        router-link.ui.teal.fluid.button(:to='`/course/${course.id}/assignments`') การบ้าน
 </template>
 
 <script>

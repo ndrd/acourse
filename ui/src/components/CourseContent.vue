@@ -1,6 +1,6 @@
 <template lang="pug">
   .ui.segment
-    h4.ui.header Course Content
+    h4.ui.header เนื้อหา
     .ui.styled.fluid.accordion(ref='accordion')
       div(v-for='(x, i) in contents')
         .title

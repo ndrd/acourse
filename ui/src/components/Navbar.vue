@@ -14,11 +14,11 @@
       UserAvatar(:user='currentUser')
       i.dropdown.icon
       .menu
-        router-link.item(to='/profile') Profile
-        a.item(@click='signOut') Sign Out
+        router-link.item(to='/profile') โปรไฟล์
+        a.item(@click='signOut') ออกจากระบบ
     div(v-if='currentUser === null', style='padding-top: 0.5rem; padding-bottom: 0.5rem;')
       .item
-        .ui.blue.button(@click='openAuth') Sign In
+        .ui.blue.button(@click='openAuth') เข้าสู่ระบบ
   AuthModal(ref='auth')
 </template>
 

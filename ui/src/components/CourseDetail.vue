@@ -1,7 +1,7 @@
 <template lang="pug">
   .ui.segment
-    h4.ui.header Course Detail
-    span Start: {{ course.start | date('DD/MM/YYYY') }}
+    h4.ui.header คำอธิบาย
+    span เริ่มเรียน: {{ course.start | date('DD/MM/YYYY') }}
     .ui.divider
     p.description(v-html='course.description')
 </template>

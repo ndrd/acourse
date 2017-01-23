@@ -9,7 +9,7 @@
           label ใส่จำนวนเงินที่โอน (บาท)
           input(type='number', v-model.number='price')
       br
-      .ui.fluid.green.button(@click='enroll') Upload and Enroll
+      .ui.fluid.green.button(@click='enroll') อัพโหลดเพื่อลงทะเบียนเรียน
 </template>
 
 <script>

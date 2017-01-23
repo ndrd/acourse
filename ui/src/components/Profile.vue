@@ -3,7 +3,7 @@
     .ui.segment
       UserProfile(:user='currentUser', v-show='currentUser')
       .ui.right.aligned.basic.segment
-        router-link.ui.green.edit.button(to='/profile/edit') Edit
+        router-link.ui.green.edit.button(to='/profile/edit') แก้ไข
       .ui.basic.segment
         h4.ui.header User ID
         p(v-if="currentUser") {{ currentUser.id }}
