@@ -31,3 +31,26 @@ p.description {
   margin-bottom: 0;
   margin-left: 0;
 }
+
+.course.card > .image > img {
+  object-fit: cover;
+  object-position: center center;
+  height: 180px !important;
+}
+
+.course.card > .content > .header {
+  font-size: 1.2em !important;
+}
+
+.course.card > .content > .extra.content > .price {
+  font-size: 1.3em;
+}
+
+.course.card > .content > .extra.content > .discount.price {
+  color: red;
+}
+
+.course.card > .content > .extra.content > .price.line {
+  text-decoration: line-through;
+  font-size: 1.0em !important;
+}

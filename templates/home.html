@@ -4,10 +4,15 @@
 
 {{define "Body"}}
 <div class="ui basic segment">
-  <h1 class="text-center">All Courses</h1>
-  <div class="ui three stackable cards">
-
-  </div>
-  <div class="ui message">No course available yet!</div>
+  {{if .PublicCourses}}
+    <h1 class="text-center">All Courses</h1>
+    <div class="ui three stackable cards">
+      {{range .PublicCourses}}
+        {{template "CourseCard" .}}
+      {{end}}
+    </div>
+  {{else}}
+    <div class="ui message">No course available yet!</div>
+  {{end}}
 </div>
 {{end}}

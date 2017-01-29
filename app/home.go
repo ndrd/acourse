@@ -2,7 +2,10 @@ package app
 
 import (
 	"net/http"
+	"sync"
 	"time"
+
+	"github.com/acoshift/ds"
 )
 
 var fakeData = map[string]interface{}{
@@ -37,5 +40,27 @@ func serveHome(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	executeTemplate(w, "home.html", http.StatusOK, fakeData)
+	ctx := r.Context()
+	data := map[string]interface{}{}
+	{
+		var courses []*Course
+		err := client.Query(ctx, kindCourse, &courses,
+			ds.Filter("Options.Public =", true),
+		)
+		must(err)
+		m := &sync.WaitGroup{}
+		m.Add(len(courses))
+		for _, course := range courses {
+			go func(course *Course) {
+				var err error
+				course.EnrollCount, err = client.QueryCount(ctx, kindEnroll, ds.Filter("CourseID =", course.ID()))
+				must(err)
+				m.Done()
+			}(course)
+		}
+		m.Wait()
+		data["PublicCourses"] = courses
+	}
+
+	executeTemplate(w, "home.html", http.StatusOK, data)
 }

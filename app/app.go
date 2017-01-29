@@ -1,19 +1,73 @@
 package app
 
 import (
+	"context"
 	"log"
+	"net"
 	"net/http"
+
+	"cloud.google.com/go/datastore"
+	"cloud.google.com/go/pubsub"
+	"cloud.google.com/go/storage"
+	"github.com/acoshift/ds"
+	"golang.org/x/oauth2"
+	"golang.org/x/oauth2/google"
+	"google.golang.org/api/option"
 )
 
+// Config type
+type Config struct {
+	Debug     bool   `yaml:"debug"`
+	Port      string `yaml:"port"`
+	TLSPort   string `yaml:"tlsPort"`
+	TLSCert   string `yaml:"tlsCert"`
+	TLSKey    string `yaml:"tlsKey"`
+	Domain    string `yaml:"domain"`
+	ProjectID string `yaml:"projectId"`
+	Email     struct {
+		From     string `yaml:"from"`
+		Server   string `yaml:"server"`
+		Port     int    `yaml:"port"`
+		User     string `yaml:"user"`
+		Password string `yaml:"password"`
+	} `yaml:"email"`
+	Firebase struct {
+		ProjectID      string `yaml:"projectId"`
+		ServiceAccount string `yaml:"serviceAccount"`
+	} `yaml:"firebase"`
+	ServiceAccount string `yaml:"serviceAccount"`
+}
+
+var client *ds.Client
+
 // Run runs the app
-func Run() {
+func Run(config Config) {
+	ctx := context.Background()
 	var err error
+
+	var tokenSource oauth2.TokenSource
+	{
+		jwtConfig, err := google.JWTConfigFromJSON([]byte(config.ServiceAccount),
+			datastore.ScopeDatastore,
+			pubsub.ScopePubSub,
+			storage.ScopeFullControl,
+		)
+		if err != nil {
+			log.Fatal(err)
+		}
+		tokenSource = jwtConfig.TokenSource(ctx)
+	}
 
 	err = parseTemplates([][]string{
 		{"home.html", "common.html", "layout.html"},
 		{"user/profile.html", "common.html", "layout.html"},
 		{"privacy.html", "common.html", "layout.html"},
 	})
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	client, err = ds.NewClient(ctx, config.ProjectID, option.WithTokenSource(tokenSource))
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -78,5 +132,22 @@ func Run() {
 	mux.Handle("/privacy", http.HandlerFunc(servePrivacy))
 	mux.Handle("/profile", http.HandlerFunc(serveProfile))
 	mux.Handle("/", http.HandlerFunc(serveHome))
-	http.ListenAndServe(":8080", mux)
+
+	handler := mux
+	addr := net.JoinHostPort("0.0.0.0", config.Port)
+
+	if len(config.TLSPort) > 0 {
+		tlsAddr := net.JoinHostPort("0.0.0.0", config.TLSPort)
+		go func() {
+			log.Printf("Listening Redirect on %s\n", addr)
+			log.Fatal(http.ListenAndServe(addr, http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+				http.Redirect(w, r, "https://"+config.Domain, http.StatusMovedPermanently)
+			})))
+		}()
+		log.Printf("Listening TLS on %s", tlsAddr)
+		log.Fatal(http.ListenAndServeTLS(tlsAddr, config.TLSCert, config.TLSKey, handler))
+	} else {
+		log.Printf("Listening on %s", addr)
+		log.Fatal(http.ListenAndServe(addr, handler))
+	}
 }
