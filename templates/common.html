@@ -81,3 +81,35 @@
   {{end}}
 </div>
 {{end}}
+
+{{define "CourseCard"}}
+  <a href="/course/{{.URL}}" class="ui course card">
+    <div class="image"><img src="{{.Photo}}"></div>
+    <div class="content">
+      <div class="header">{{.Title | trim 45}}</div>
+      <div class="meta">
+        {{if eq .Type "video"}}
+          <span>Video</span>
+        {{else if eq .Type "live"}}
+          <span class="date">Live start at {{.Start | date}}</span>
+        {{else if eq .Type "ebook"}}
+          <span>eBook</span>
+        {{end}}
+      </div>
+      <div class="description">{{.ShortDescription | trim 200}}</div>
+    </div>
+    <div class="extra content">
+      <div class="right floated">
+        <i class="user icon"></i> {{.EnrollCount}}
+      </div>
+      {{if and (not .Options.Discount) (le .Price 0.0)}}
+        <span class="price">FREE</span>
+      {{else}}
+        <span class="price{{if .Options.Discount}} line{{end}}">฿ {{.Price | money}}</span>
+      {{end}}
+      {{if .Options.Discount}}
+        <span class="price">&nbsp;฿ {{ .DiscountedPrice | money }}</span>
+      {{end}}
+    </div>
+  </a>
+{{end}}

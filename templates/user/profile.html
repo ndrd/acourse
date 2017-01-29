@@ -1,5 +1,5 @@
 {{define "Head"}}
-<title>Acourse - Profile</title>
+<title>Acourse</title>
 {{end}}
 
 {{define "Body"}}
@@ -7,6 +7,21 @@
   {{template "UserProfile" .User}}
   <div class="ui right aligned basic segment">
     <a href="/profile/edit" class="ui green button" style="width: 140px;">Edit</a>
+  </div>
+  <div class="ui basic segment">
+    <h4 class="ui header">User ID</h4>
+    <p>{{call .User.ID}}</p>
+  </div>
+</div>
+<div class="ui segment">
+  <h3 class="ui header">My Own Courses</h3>
+  {{if .Role.Instructor}}
+    <a href="/course/new" class="ui blue button" style="margin: .3rem;">Create new course</a>
+  {{end}}
+  <div class="ui four stackable cards" style="padding-top: 30px;">
+    {{range .OwnCourses}}
+      {{template "CourseCard" .}}
+    {{end}}
   </div>
 </div>
 {{end}}

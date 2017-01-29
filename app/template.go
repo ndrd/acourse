@@ -5,6 +5,8 @@ import (
 	"html/template"
 	"net/http"
 	"path/filepath"
+	"strconv"
+	"time"
 )
 
 var templates = map[string]*template.Template{}
@@ -25,6 +27,9 @@ func parseTemplates(sets [][]string) error {
 		t := template.New("")
 		t.Funcs(template.FuncMap{
 			"templateName": func() string { return templateName },
+			"trim":         trimFn,
+			"money":        moneyFn,
+			"date":         dateFn,
 		})
 		if _, err := t.ParseFiles(joinTemplateDir(set)...); err != nil {
 			return err
@@ -49,4 +54,19 @@ func executeTemplate(w http.ResponseWriter, name string, status int, data interf
 	if err := t.Execute(w, data); err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 	}
+}
+
+func trimFn(n int, s string) string {
+	if n > len(s) {
+		n = len(s)
+	}
+	return s[:n]
+}
+
+func moneyFn(f float64) string {
+	return strconv.FormatFloat(f, 'f', 0, 64)
+}
+
+func dateFn(t time.Time) string {
+	return t.Format("2006/01/02")
 }
