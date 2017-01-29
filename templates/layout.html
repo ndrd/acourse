@@ -1,0 +1,77 @@
+{{define "ROOT"}}<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge, chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <link rel="shortcut icon" sizes="16x16 24x24 32x32 48x48 64x64" href="/static/acourse-120.png">
+    <link rel="manifest" href="/static/manifest.json">
+    <meta name="theme-color" content="#336b87">
+    <meta name="msapplication-navbutton-color" content="#336b87">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta property="fb:app_id" content="1369680239711962">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Acourse">
+    {{template "Head" $}}
+    <!--<title>{{ .Title }}</title>
+    <meta name="description" content="{{ .Description }}">
+    <meta property="og:url" content="{{ .URL }}">
+    <meta property="og:title" content="{{ .Title }}">
+    <meta property="og:description" content="{{ .Description }}">
+    <meta property="og:image" content="{{ .Image }}">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="700">-->
+    {{template "Analytics" $}}
+    <link rel="stylesheet" href="/-/semantic-2.2.7-reset.min.css">
+    <link rel="stylesheet" href="/-/semantic-2.2.7-site.min.css">
+    <link rel="stylesheet" href="/-/semantic-2.2.7-accordion.min.css">
+    <link rel="stylesheet" href="/-/semantic-2.2.7-breadcrumb.min.css">
+    <link rel="stylesheet" href="/-/semantic-2.2.7-button.min.css">
+    <link rel="stylesheet" href="/-/semantic-2.2.7-card.min.css">
+    <link rel="stylesheet" href="/-/semantic-2.2.7-checkbox.min.css">
+    <link rel="stylesheet" href="/-/semantic-2.2.7-comment.min.css">
+    <link rel="stylesheet" href="/-/semantic-2.2.7-container.min.css">
+    <link rel="stylesheet" href="/-/semantic-2.2.7-dimmer.min.css">
+    <link rel="stylesheet" href="/-/semantic-2.2.7-divider.min.css">
+    <link rel="stylesheet" href="/-/semantic-2.2.7-dropdown.min.css">
+    <link rel="stylesheet" href="/-/semantic-2.2.7-embed.min.css">
+    <link rel="stylesheet" href="/-/semantic-2.2.7-form.min.css">
+    <link rel="stylesheet" href="/-/semantic-2.2.7-grid.min.css">
+    <link rel="stylesheet" href="/-/semantic-2.2.7-header.min.css">
+    <link rel="stylesheet" href="/-/semantic-2.2.7-icon.min.css">
+    <link rel="stylesheet" href="/-/semantic-2.2.7-image.min.css">
+    <link rel="stylesheet" href="/-/semantic-2.2.7-input.min.css">
+    <link rel="stylesheet" href="/-/semantic-2.2.7-item.min.css">
+    <link rel="stylesheet" href="/-/semantic-2.2.7-list.min.css">
+    <link rel="stylesheet" href="/-/semantic-2.2.7-menu.min.css">
+    <link rel="stylesheet" href="/-/semantic-2.2.7-message.min.css">
+    <link rel="stylesheet" href="/-/semantic-2.2.7-modal.min.css">
+    <link rel="stylesheet" href="/-/semantic-2.2.7-segment.min.css">
+    <link rel="stylesheet" href="/-/semantic-2.2.7-transition.min.css">
+    <link rel="stylesheet" href="/-/semantic-2.2.7-progress.min.css">
+    <link rel="stylesheet" href="/-/semantic-2.2.7-table.min.css">
+    <link rel="stylesheet" href="/-/site.css">
+  </head>
+  <body>
+    <div class="ui basic segment" id="app">
+      <div class="ui container">
+        {{template "Navbar" $}}
+        <div id="view">
+          {{template "Body" $}}
+        </div>
+      </div>
+    </div>
+    <script src="/-/jquery-3.1.1.min.js"></script>
+    <script src="/-/semantic-2.2.7-accordion.min.js"></script>
+    <script src="/-/semantic-2.2.7-checkbox.min.js"></script>
+    <script src="/-/semantic-2.2.7-dimmer.min.js"></script>
+    <script src="/-/semantic-2.2.7-dropdown.min.js"></script>
+    <script src="/-/semantic-2.2.7-embed.min.js"></script>
+    <script src="/-/semantic-2.2.7-modal.min.js"></script>
+    <script src="/-/semantic-2.2.7-transition.min.js"></script>
+    <script src="/-/semantic-2.2.7-progress.min.js"></script>
+    {{template "Semantic" $}}
+  </body>
+</html>
+{{end}}

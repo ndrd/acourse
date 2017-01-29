@@ -1,0 +1,11 @@
+# bower
+bower_components/
+
+# credential
+private/
+
+# build
+.build/
+
+# other
+.DS_Store

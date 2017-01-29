@@ -1,0 +1,12 @@
+{{define "Head"}}
+<title>Acourse - Profile</title>
+{{end}}
+
+{{define "Body"}}
+<div class="ui segment">
+  {{template "UserProfile" .User}}
+  <div class="ui right aligned basic segment">
+    <a href="/profile/edit" class="ui green button" style="width: 140px;">Edit</a>
+  </div>
+</div>
+{{end}}

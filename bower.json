@@ -1,0 +1,22 @@
+{
+  "name": "acourse",
+  "homepage": "https://github.com/acoshift/acourse",
+  "authors": [
+    "acoshift <acoshift@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "semantic": "semantic-ui#^2.2.7",
+    "jquery": "^3.1.1"
+  }
+}
