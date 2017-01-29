@@ -3,5 +3,6 @@ package app
 type contextKey int
 
 const (
-	keyCourseID = iota
+	keyCourseID contextKey = iota
+	keyCourse
 )

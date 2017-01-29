@@ -62,6 +62,7 @@ func Run(config Config) {
 		{"home.html", "common.html", "layout.html"},
 		{"user/profile.html", "common.html", "layout.html"},
 		{"course/index.html", "course/layout.html", "common.html", "layout.html"},
+		{"course/edit.html", "course/layout.html", "common.html", "layout.html"},
 		{"privacy.html", "common.html", "layout.html"},
 	})
 	if err != nil {
