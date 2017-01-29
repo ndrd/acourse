@@ -35,6 +35,24 @@ type Course struct {
 	EnrollCount int `datastore:"-"`
 }
 
+// Courses type
+type Courses []*Course
+
+// Len implements Sort interface
+func (xs Courses) Len() int {
+	return len(xs)
+}
+
+// Less implements Sort interface
+func (xs Courses) Less(i, l int) bool {
+	return xs[i].CreatedAt.Before(xs[l].CreatedAt)
+}
+
+// Swap implements Sort interface
+func (xs Courses) Swap(i, j int) {
+	xs[i], xs[j] = xs[j], xs[i]
+}
+
 // CourseOption type
 type CourseOption struct {
 	Public     bool

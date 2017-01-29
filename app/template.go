@@ -57,10 +57,11 @@ func executeTemplate(w http.ResponseWriter, name string, status int, data interf
 }
 
 func trimFn(n int, s string) string {
-	if n > len(s) {
-		n = len(s)
+	r := []rune(s)
+	if n > len(r) {
+		n = len(r)
 	}
-	return s[:n]
+	return string(r[:n])
 }
 
 func moneyFn(f float64) string {

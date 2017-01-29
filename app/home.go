@@ -2,6 +2,7 @@ package app
 
 import (
 	"net/http"
+	"sort"
 	"sync"
 	"time"
 
@@ -43,7 +44,7 @@ func serveHome(w http.ResponseWriter, r *http.Request) {
 	ctx := r.Context()
 	data := map[string]interface{}{}
 	{
-		var courses []*Course
+		var courses Courses
 		err := client.Query(ctx, kindCourse, &courses,
 			ds.Filter("Options.Public =", true),
 		)
@@ -59,6 +60,7 @@ func serveHome(w http.ResponseWriter, r *http.Request) {
 			}(course)
 		}
 		m.Wait()
+		sort.Sort(sort.Reverse(courses))
 		data["PublicCourses"] = courses
 	}
 
