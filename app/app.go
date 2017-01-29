@@ -61,6 +61,7 @@ func Run(config Config) {
 	err = parseTemplates([][]string{
 		{"home.html", "common.html", "layout.html"},
 		{"user/profile.html", "common.html", "layout.html"},
+		{"course/index.html", "course/layout.html", "common.html", "layout.html"},
 		{"privacy.html", "common.html", "layout.html"},
 	})
 	if err != nil {
@@ -131,6 +132,8 @@ func Run(config Config) {
 	mux.Handle("/_ah/", http.NotFoundHandler())
 	mux.Handle("/privacy", http.HandlerFunc(servePrivacy))
 	mux.Handle("/profile", http.HandlerFunc(serveProfile))
+	mux.Handle("/course", http.NotFoundHandler())
+	mux.Handle("/course/", http.StripPrefix("/course", http.HandlerFunc(serveCourse)))
 	mux.Handle("/", http.HandlerFunc(serveHome))
 
 	handler := mux

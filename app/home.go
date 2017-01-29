@@ -55,6 +55,7 @@ func serveHome(w http.ResponseWriter, r *http.Request) {
 			go func(course *Course) {
 				var err error
 				course.EnrollCount, err = client.QueryCount(ctx, kindEnroll, ds.Filter("CourseID =", course.ID()))
+				err = ds.IgnoreFieldMismatch(err)
 				must(err)
 				m.Done()
 			}(course)

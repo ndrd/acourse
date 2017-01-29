@@ -53,6 +53,10 @@
 <img src="{{.}}" class="ui circular image avatar" style="width: 32px; height: 32px;">
 {{end}}
 
+{{define "AvatarMini"}}
+<img src="{{.}}" class="ui circular image avatar" style="width: 64px; height: 64px;">
+{{end}}
+
 {{define "AvatarMedium"}}
 <img src="{{.}}" class="ui circular image avatar" style="width: 200px; height: 200px;">
 {{end}}
@@ -83,7 +87,7 @@
 {{end}}
 
 {{define "CourseCard"}}
-  <a href="/course/{{.URL}}" class="ui course card">
+  <a href="/course/{{.Link}}" class="ui course card">
     <div class="image"><img src="{{.Photo}}"></div>
     <div class="content">
       <div class="header">{{.Title | trim 45}}</div>
@@ -112,4 +116,15 @@
       {{end}}
     </div>
   </a>
+{{end}}
+
+{{define "CourseHeader"}}
+<title>{{.Title}} | Acourse</title>
+<meta name="description" content="{{.Description}}">
+<meta property="og:url" content="https://acourse.io/course/{{.Link}}">
+<meta property="og:title" content="{{.Title}}">
+<meta property="og:description" content="{{.Description}}">
+<meta property="og:image" content="{{.Photo}}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="700">
 {{end}}

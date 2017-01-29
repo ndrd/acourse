@@ -1,0 +1,41 @@
+{{define "Content"}}
+{{with .Course}}
+<div class="ui basic segment" style="padding-top: 0;">
+  <div class="ui center aligned grid">
+    <div class="row">
+      <div class="column">
+        <img src="{{.Photo}}" class="ui centered big image">
+      </div>
+    </div>
+    <div class="row" style="padding-top: 0;">
+      <div class="column">
+        <h1>{{.Title}}</h1>
+      </div>
+    </div>
+    <div class="two column middle aligned row">
+      <div class="right aligned column" style="padding-right: 2px;">
+        <span>
+          {{template "AvatarMini" .OwnerUser.Photo}}
+        </span>
+      </div>
+      <div class="left aligned column" style="padding-left: 2px;">
+        <span>
+          <h3>{{.OwnerUser.Name}}</h3>
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+{{with .Video}}
+<div class="ui segment">
+  <div id="course-header-video" class="ui embed" data-source="youtube" data-id="{{.}}"></div>
+</div>
+{{end}}
+{{end}}
+{{end}}
+
+{{define "Course-Script"}}
+<script>
+  $('#course-header-video').embed()
+</script>
+{{end}}

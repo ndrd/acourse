@@ -1,0 +1,22 @@
+{{define "Head"}}
+  {{template "CourseHeader" .Course}}
+{{end}}
+
+{{define "Body"}}
+<div class="ui basic segment">
+  <div class="ui huge breadcrumb" style="padding-bottom: 1.5rem;">
+    <a href="/" class="section">Courses</a>
+    <i class="right chevron icon divider"></i>
+    {{if eq "course/index.html" templateName}}
+      <div class="active section">{{.Course.Title}}</div>
+    {{else}}
+      <a href="/course/{{.Course.URL}}" class="section">{{.Course.Title}}</a>
+    {{end}}
+  </div>
+  {{template "Content" .}}
+</div>
+{{end}}
+
+{{define "Script"}}
+  {{template "Course-Script"}}
+{{end}}

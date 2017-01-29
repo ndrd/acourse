@@ -13,6 +13,39 @@ const (
 	kindEnroll = "Enroll"
 )
 
+// User type
+type User struct {
+	ds.StringIDModel
+	ds.StampModel
+	Username string
+	Name     string `datastore:",noindex"`
+	Photo    string `datastore:",noindex"`
+	AboutMe  string `datastore:",noindex"`
+}
+
+// Default sets default value to user
+func (x *User) Default() {
+	if len(x.Name) == 0 {
+		x.Name = "Anonymous"
+	}
+	if len(x.Photo) == 0 {
+		x.Photo = "/-/icons/ic_face_black_48px.svg"
+	}
+	if len(x.Username) == 0 {
+		x.Username = x.ID()
+	}
+}
+
+// Role type
+type Role struct {
+	ds.StringIDModel
+	ds.StampModel
+
+	// roles
+	Admin      bool
+	Instructor bool
+}
+
 // Course model
 type Course struct {
 	ds.StringIDModel
@@ -32,7 +65,16 @@ type Course struct {
 	Contents         CourseContents `datastore:",noindex"`
 	EnrollDetail     string         `datastore:",noindex"`
 
-	EnrollCount int `datastore:"-"`
+	EnrollCount int   `datastore:"-"`
+	OwnerUser   *User `datastore:"-"`
+}
+
+// Link returns course link
+func (x *Course) Link() string {
+	if len(x.URL) > 0 {
+		return x.URL
+	}
+	return x.ID()
 }
 
 // Courses type
