@@ -1,5 +1,4 @@
-{{define "Content"}}
-{{with .Course}}
+{{define "Content"}}{{with .Course}}
 <div class="ui basic segment" style="padding-top: 0;">
   <div class="ui center aligned grid">
     <div class="row">
@@ -31,11 +30,47 @@
   <div id="course-header-video" class="ui embed" data-source="youtube" data-id="{{.}}"></div>
 </div>
 {{end}}
+<div class="ui segment">
+  <h4 class="ui header">Course Detail</h4>
+  <span>Start: {{.Start | date}}</span>
+  <div class="ui divider"></div>
+  <p class="description">{{.Description | html}}</p>
+</div>
+{{with .Contents}}
+<div class="ui segment">
+  <h4 class="ui header">Course Content</h4>
+  <div class="ui styled fluid accordion" id="course-content-accordion">
+    {{range $i, $v := .}}
+      <div class="title">
+        <i class="dropdown icon"></i>
+        Section {{add $i 1}} : {{$v.Title}}
+      </div>
+      <div class="content">
+        <p class="description">{{$v.Description | html}}</p>
+        {{with $v.Video}}
+          <div class="video">
+            <div class="ui embed" data-source="youtube" data-id="{{.}}"></div>
+          </div>
+        {{end}}
+      </div>
+    {{end}}
+  </div>
+</div>
 {{end}}
-{{end}}
+{{end}}{{end}}
 
 {{define "Course-Script"}}
 <script>
-  $('#course-header-video').embed()
+  $(function () {
+    $('#course-header-video').embed()
+    $('#course-content-accordion').accordion({
+      onOpening: function () {
+        var video = $(this).find('.video > .ui.embed')
+        if (!video.hasClass('active')) {
+          video.embed()
+        }
+      }
+    })
+  })
 </script>
 {{end}}

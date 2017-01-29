@@ -30,6 +30,8 @@ func parseTemplates(sets [][]string) error {
 			"trim":         trimFn,
 			"money":        moneyFn,
 			"date":         dateFn,
+			"html":         htmlFn,
+			"add":          func(a, b int) int { return a + b },
 		})
 		if _, err := t.ParseFiles(joinTemplateDir(set)...); err != nil {
 			return err
@@ -70,4 +72,8 @@ func moneyFn(f float64) string {
 
 func dateFn(t time.Time) string {
 	return t.Format("2006/01/02")
+}
+
+func htmlFn(s string) template.HTML {
+	return template.HTML(s)
 }
