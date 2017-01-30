@@ -6,7 +6,7 @@
   text-align: center;
 }
 
-p.description {
+.description {
   text-align: left;
   white-space: pre-wrap;
   word-break: break-word;

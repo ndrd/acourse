@@ -34,7 +34,7 @@
   <h4 class="ui header">Course Detail</h4>
   <span>Start: {{.Start | date}}</span>
   <div class="ui divider"></div>
-  <p class="description">{{.Description | html}}</p>
+  <div class="description">{{.Description | html}}</div>
 </div>
 {{with .Contents}}
 <div class="ui segment">
