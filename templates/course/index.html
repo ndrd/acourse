@@ -25,6 +25,26 @@
     </div>
   </div>
 </div>
+<div class="ui segment">
+  <div class="ui stackable equal width grid">
+    <div class="row">
+      <div class="center aligned column">
+        <h2>{{if le .Price 0.0}}FREE{{else}}฿ {{.Price | money}}{{end}}</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="center aligned column">
+        <div class="ui blue button" style="width: 200px;">Enroll</div>
+        <div class="ui blue disabled button">Wait for Approve</div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="center aligned column">
+        <div class="ui red disabled button">Sign In to Enroll</div>
+      </div>
+    </div>
+  </div>
+</div>
 {{with .Video}}
 <div class="ui segment">
   <div id="course-header-video" class="ui embed" data-source="youtube" data-id="{{.}}"></div>
