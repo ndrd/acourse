@@ -11,6 +11,7 @@ import {
 import {
   Layout,
   Home,
+  SignIn,
   Profile,
   ProfileEdit,
   Course,
@@ -38,6 +39,7 @@ const router = new VueRouter({
       component: Layout,
       children: [
         { path: '', component: Home },
+        { path: '/signin', component: SignIn, beforeEnter: redirectIfAuth },
         { path: '/profile', component: Profile, beforeEnter: redirectIfNotAuth },
         { path: '/profile/edit', component: ProfileEdit, beforeEnter: redirectIfNotAuth },
         { path: '/course/new', component: CourseEditor, name: 'courseNew', beforeEnter: isRole('instructor') },
@@ -69,21 +71,21 @@ router.afterEach((to) => {
   window.ga('send', 'pageview')
 })
 
-// function redirectIfAuth (to, from, next) {
-//   Loader.start('router')
-//   Auth.currentUser()
-//     .first()
-//     .subscribe(
-//       (user) => {
-//         Loader.stop('router')
-//         if (user) {
-//           next('/')
-//         } else {
-//           next()
-//         }
-//       }
-//     )
-// }
+function redirectIfAuth (to, from, next) {
+  Loader.start('router')
+  Auth.currentUser()
+    .first()
+    .subscribe(
+      (user) => {
+        Loader.stop('router')
+        if (user) {
+          next('/')
+        } else {
+          next()
+        }
+      }
+    )
+}
 
 function redirectIfNotAuth (to, from, next) {
   Loader.start('router')

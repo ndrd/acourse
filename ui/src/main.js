@@ -3,6 +3,7 @@ import 'es6-promise/auto'
 import Vue from 'vue'
 import VueRx from 'vue-rx'
 import VueRouteRx from 'vue-route-rx'
+import VueMaterial from 'vue-material'
 import Raven from 'raven-js'
 
 import { Observable } from 'rxjs/Observable'
@@ -25,15 +26,6 @@ import 'rxjs/add/operator/share'
 import 'rxjs/add/operator/skip'
 import 'rxjs/add/operator/pluck'
 
-import 'semantic-ui-css/components/accordion.min.js'
-import 'semantic-ui-css/components/checkbox.min.js'
-import 'semantic-ui-css/components/dimmer.min.js'
-import 'semantic-ui-css/components/dropdown.min.js'
-import 'semantic-ui-css/components/embed.min.js'
-import 'semantic-ui-css/components/modal.min.js'
-import 'semantic-ui-css/components/transition.min.js'
-import 'semantic-ui-css/components/progress.min.js'
-
 import App from './App'
 import './filters'
 import { Firebase } from 'services'
@@ -48,7 +40,13 @@ VueRouteRx.use(router)
 
 Vue.use(VueRx, { Observable, Subscription })
 Vue.use(VueRouteRx, { BehaviorSubject })
+Vue.use(VueMaterial)
 Firebase.init()
+
+Vue.material.registerTheme('default', {
+  primary: 'blue',
+  accent: 'blue'
+})
 
 Vue.mixin({
   methods: {

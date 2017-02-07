@@ -1,5 +1,6 @@
 import Layout from './Layout'
 import Home from './Home'
+import SignIn from './SignIn'
 import Profile from './Profile'
 import ProfileEdit from './ProfileEdit'
 import CourseEditor from './CourseEditor'
@@ -17,6 +18,7 @@ const Privacy = () => System.import('./Privacy')
 export {
   Layout,
   Home,
+  SignIn,
   Profile,
   ProfileEdit,
   Course,
