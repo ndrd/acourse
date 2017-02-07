@@ -1,7 +1,15 @@
 <template lang="pug">
-  .ui.segment
-    .ui.embed(ref='video', data-source='youtube', :data-id='src')
+md-whiteframe(md-elevation='1')
+  .ui.embed(ref='video', data-source='youtube', :data-id='src')
 </template>
+
+<style scoped>
+  .md-whiteframe {
+    margin-top: 1rem;
+    padding: 1rem;
+  }
+</style>
+
 
 <script>
 export default {

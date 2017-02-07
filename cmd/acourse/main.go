@@ -84,7 +84,7 @@ func main() {
 		app.Logger,
 		app.RequestID,
 	}
-	if len(cfg.TLSPort) > 0 {
+	if !cfg.Debug {
 		middlewares = append(middlewares, app.HSTS)
 	}
 	middlewares = append(middlewares,

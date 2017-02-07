@@ -17,13 +17,6 @@ md-whiteframe(md-elevation='1')
   EnrollModal(ref="enrollModal", :course="course")
 </template>
 
-<style scoped>
-  .md-whiteframe {
-    margin-top: 1rem;
-    padding: 1rem 2rem;
-  }
-</style>
-
 <script>
 import { Course, Document, Auth } from 'services'
 import EnrollModal from './EnrollModal'
