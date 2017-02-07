@@ -1,37 +1,49 @@
 <template lang="pug">
-  router-link.ui.card(:to='`/course/${url}`')
-    .image(:to='`/course/${url}`')
-      img(:src='course.photo')
-    .content
-      .header(:to='`/course/${url}`') {{ course.title | trim(45) }}
-      .meta
-        span(v-if="course.type === 'video'") Video
-        span.date(v-if="course.type === 'live'") Live start at {{ course.start | date('DD/MM/YYYY') }}
-        span(v-if="course.type === 'ebook'") eBook
-      .description
-        | {{ course.shortDescription }}
-    .extra.content
-      .right.floated
-        i.user.icon
-        | &nbsp;{{ course.student }}
-      span.price(v-if='!hidePrice && !course.discount && (course.price <= 0 || !course.price)') FREE
-      span.price(v-if='!hidePrice && !course.discount && course.price > 0', :class='{line: course.discount}') ฿ {{ course.price | money }}
-      span.discount.price(v-if='!hidePrice && course.discount') &nbsp;฿ {{ course.discountedPrice | money }}
+router-link(:to='`/course/${url}`', tag='div')
+  md-card(md-with-hover)
+    md-card-area
+      md-card-media
+        img(:src='course.photo')
+        md-ink-ripple
+      md-card-header
+        .md-title {{ course.title | trim(45) }}
+        .md-subhead
+          span(v-if="course.type === 'video'") Video
+          span.date(v-if="course.type === 'live'") Live start at {{ course.start | date('DD/MM/YYYY') }}
+          span(v-if="course.type === 'ebook'") eBook
+      md-card-content
+        span {{ course.shortDescription }}
+    md-card-content
+      md-layout
+        md-layout
+          span.price(v-if='!hidePrice && !course.discount && (course.price <= 0 || !course.price)') FREE
+          span.price(v-if='!hidePrice && !course.discount && course.price > 0', :class='{line: course.discount}') ฿ {{ course.price | money }}
+          span.discount.price(v-if='!hidePrice && course.discount') &nbsp;฿ {{ course.discountedPrice | money }}
+        md-layout(md-align='end')
+          span
+            md-icon person
+            | &nbsp;{{ course.student }}
 </template>
 
 <style scoped>
-  .card img {
+  .md-card-media img {
     object-fit: cover;
     object-position: center center;
     height: 180px !important;
   }
 
-  .card > .content > .header {
-    font-size: 1.2em !important;
+  .md-card-area {
+    height: 360px;
+  }
+
+  .md-card > .md-card-content {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    color: rgba(0, 0, 0, .50);
   }
 
   .price {
-    font-size: 1.3em;
+    font-size: 1.1em;
   }
 
   .discount.price {
@@ -40,7 +52,7 @@
 
   .price.line {
     text-decoration: line-through;
-    font-size: 1.0em !important;
+    font-size: .9em !important;
   }
 </style>
 

@@ -1,15 +1,17 @@
 <template lang="pug">
   div
     Navbar
-    #view
-      .ui.container
+    md-layout#view
+      md-layout(md-hide-xsmall, md-flex-small='5', md-flex-medium='10', md-flex-large='15', md-flex-xlarge='20')
+      md-layout
         router-view
+      md-layout(md-hide-xsmall, md-flex-small='5', md-flex-medium='10', md-flex-large='15', md-flex-xlarge='20')
 </template>
 
 <style scoped>
   #view {
-    padding-top: 70px;
-    padding-bottom: 30px;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
   }
 </style>
 

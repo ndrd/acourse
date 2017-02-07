@@ -1,5 +1,5 @@
 <template lang="pug">
-  .ui.basic.segment(id='app', :class='{loading}', style='padding: 0; margin: 0; min-height: 100%;')
+  div(id='app', :class='{loading}')
     router-view
     SuccessModal(ref='successModal')
     ErrorModal(ref='errorModal')
