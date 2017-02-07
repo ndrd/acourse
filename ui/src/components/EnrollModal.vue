@@ -1,15 +1,15 @@
 <template lang="pug">
-  .ui.small.modal
-    .header วิธีการลงทะเบียน {{ course.title }}
-    .content
-      div(v-html="detail")
-      br
-      .ui.form
-        .field
-          label ใส่จำนวนเงินที่โอน (บาท)
-          input(type='number', v-model.number='price')
-      br
-      .ui.fluid.green.button(@click='enroll') Upload and Enroll
+md-dialog
+  md-dialog-title วิธีการลงทะเบียน {{ course.title }}
+  md-dialog-content
+    div(v-html="detail")
+    br
+    .ui.form
+      .field
+        label ใส่จำนวนเงินที่โอน (บาท)
+        input(type='number', v-model.number='price')
+    br
+    .ui.fluid.green.button(@click='enroll') Upload and Enroll
 </template>
 
 <script>
