@@ -1,5 +1,6 @@
 # nodejs
 node_modules/
+bower_components/
 
 # credential
 private/

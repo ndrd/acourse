@@ -7,7 +7,9 @@ module.exports = {
   // https://github.com/feross/standard/blob/master/RULES.md#javascript-standard-style
   extends: 'standard',
   globals: {
-    $: true
+    $: true,
+    moment: true,
+    axios: true
   },
   // required to lint *.vue files
   plugins: [

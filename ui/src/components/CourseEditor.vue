@@ -64,7 +64,6 @@
 
 <script>
 import { Document, Course, Loader } from 'services'
-import moment from 'moment'
 import flow from 'lodash/fp/flow'
 import defaults from 'lodash/fp/defaults'
 import pick from 'lodash/fp/pick'

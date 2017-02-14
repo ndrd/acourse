@@ -1,4 +1,3 @@
-import axios from 'axios'
 import Firebase from './firebase'
 import { Observable } from 'rxjs/Observable'
 
