@@ -18,7 +18,7 @@
         a.item(@click='signOut') Sign Out
     div(v-if='currentUser === null', style='padding-top: 0.5rem; padding-bottom: 0.5rem;')
       .item
-        .ui.blue.button(@click='openAuth') Sign In
+        paper-button(raised, @click='openAuth') Sign In
   AuthModal(ref='auth')
 </template>
 

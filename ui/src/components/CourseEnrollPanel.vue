@@ -13,7 +13,7 @@
           .ui.blue.disabled.button(v-else) Wait for Approve
       .row(v-else)
         .center.aligned.column
-          .ui.red.disabled.button Sign In to Enroll
+          paper-button(disabled) Sign In to Enroll
     EnrollModal(ref="enrollModal", :course="course")
 </template>
 
